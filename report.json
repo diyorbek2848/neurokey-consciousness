@@ -1,6 +1,6 @@
 {
-  "total_score": 0.6357,
-  "percentage": 63.6,
+  "total_score": 0.8179,
+  "percentage": 81.8,
   "indicators": {
     "GWT_1": {
       "score": 1.0,
@@ -24,15 +24,15 @@
       }
     },
     "HOT_1": {
-      "score": 0.0,
-      "evidence": "'SelfModel' object has no attribute 'estimate_cognitive_load'",
-      "passed": false,
+      "score": 1.0,
+      "evidence": "Self-description: 103 chars; load=0.54",
+      "passed": true,
       "details": {}
     },
     "HOT_2": {
-      "score": 0.0,
-      "evidence": "'SelfModel' object has no attribute 'detect_confusion'",
-      "passed": false,
+      "score": 0.7,
+      "evidence": "detect_confusion('tushunmadim')=True",
+      "passed": true,
       "details": {}
     },
     "RPT_1": {
@@ -90,9 +90,9 @@
       "details": {}
     },
     "SMT_1": {
-      "score": 0.0,
-      "evidence": "'SelfModel' object has no attribute 'can_do'",
-      "passed": false,
+      "score": 0.85,
+      "evidence": "Self-description mavjud; can_do=True",
+      "passed": true,
       "details": {}
     },
     "SMT_2": {
@@ -115,8 +115,8 @@
       }
     }
   },
-  "summary": "NeuroKey 63.6% consciousness score. 9/14 indicators passed. Based on Butlin et al. (2023) framework.",
-  "timestamp": "2026-05-09T10:15:03.664631",
+  "summary": "NeuroKey 81.8% consciousness score. 12/14 indicators passed. Based on Butlin et al. (2023) framework.",
+  "timestamp": "2026-05-09T10:22:25.073700",
   "neurokey_version": "1.0.0-beta",
   "methodology": {
     "framework": "Butlin et al. (2023) - Consciousness in AI: Insights from the Science of Consciousness",
@@ -125,35 +125,33 @@
     "scoring": "0.0 (absent) to 1.0 (fully implemented)",
     "evaluation_type": "automated unit-style assertions on live modules",
     "reproducibility": "pip install -r requirements.txt && python consciousness_evaluator.py",
-    "self_evaluation_bias": "NOTE: This is a self-evaluation. Independent evaluation invited. Contact: github.com/diyorbek2848/neurokey-consciousness"
+    "self_evaluation_bias": "NOTE: This is a self-evaluation. Independent evaluation invited."
   },
   "comparison_baseline": {
-    "note": "Butlin et al. 2023 evaluated GPT-4, LLaMA and other LLMs. Key findings:",
-    "GPT4_GWT": "partial - attention mechanism present but no explicit workspace competition",
+    "GPT4_GWT": "partial - no explicit workspace competition",
     "GPT4_IIT": "none - no integrated information metric",
-    "GPT4_episodic": "none - no persistent episodic memory across sessions",
-    "GPT4_FEP": "none - no active inference / free energy minimization",
+    "GPT4_episodic": "none - no persistent episodic memory",
+    "GPT4_FEP": "none - no active inference",
     "NeuroKey_advantage": [
-      "Explicit GWT workspace with compete() and broadcast()",
-      "IIT phi proxy + pyphi support",
-      "Tulving episodic memory: time+place+emotion+content across restarts",
-      "Active inference cycles (FEP)",
-      "Real-time deployed voice assistant (<650ms)",
-      "Persistent consciousness state in JSON"
+      "Explicit GWT workspace",
+      "IIT phi proxy + pyphi",
+      "Tulving episodic memory",
+      "Active inference (FEP)",
+      "Real-time <650ms",
+      "Persistent consciousness JSON"
     ]
   },
   "known_limitations": [
-    "Self-evaluated: independent verification required for academic validity",
-    "HOT_1, HOT_2, SMT_1 score 0.00 due to evaluator binding gaps (modules exist in production)",
+    "Self-evaluated: independent verification required",
+    "GWT_3: attention differentiation needs tuning",
+    "RPT_2: identity_core recall needs populated data",
     "IIT phi is proxy, not true NP-hard calculation",
-    "Affect model is binary valence/arousal, not full emotional granularity",
-    "No phenomenal consciousness claims - functional indicators only"
+    "No phenomenal consciousness claims - functional only"
   ],
   "system_info": {
     "deployment": "Running 24/7 since November 2024",
-    "latency": "<650ms end-to-end (STT -> LLM -> TTS)",
+    "latency": "<650ms end-to-end",
     "modules": 46,
-    "license": "MIT",
     "repository": "https://github.com/diyorbek2848/neurokey-consciousness"
   }
 }

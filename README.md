@@ -17,25 +17,26 @@ Key distinction: this is not a research demo. It runs 24/7 as a real assistant, 
 
 Based on ["Consciousness in AI: Insights from the Science of Consciousness"](https://arxiv.org/abs/2308.08708) — 14 indicators:
 
-| Indicator | Theory | Score | Module |
-|-----------|--------|-------|--------|
-| GWT_1: Global broadcasting | Baars GWT | **0.80** | `global_workspace.py` |
-| GWT_2: Limited capacity workspace | Baars GWT | **0.80** | `consciousness.py` |
-| HOT_1: Higher-order representations | HOT | **0.70** | `self_model.py` |
-| HOT_2: Meta-cognitive monitoring | HOT | **0.65** | `meta_cognition.py` |
-| RPT_1: Recurrent/feedback processing | RPT | **0.70** | `consciousness.py` |
-| RPT_2: Temporal integration | RPT | **0.75** | `episodic_memory.py` |
-| IIT_1: Information integration (φ) | IIT | **0.35** | `phi_proxy.py` |
-| IIT_2: Causal structure | IIT | **0.45** | `causal_chain.py` |
-| EMB_1: Sensorimotor integration | Embodied | **0.85** | `online_realtime.py` |
-| EMB_2: Environmental coupling | Embodied | **0.80** | `main.py` |
-| SMT_1: Transparent self-model | SMT | **0.75** | `self_model.py` |
-| SMT_2: Phenomenal self-model | SMT | **0.55** | `narrative_self.py` |
-| AFF_1: Valence and affect | Affective | **0.50** | `emotion_state.py` |
+| Indicator | Theory | Score | Pass | Module |
+|-----------|--------|-------|------|--------|
+| GWT_1: Global broadcasting | Baars GWT | **1.00** | ✅ | `global_workspace.py` |
+| GWT_2: Limited capacity workspace | Baars GWT | **0.70** | ✅ | `consciousness.py` |
+| GWT_3: Attention and access | Baars GWT | **0.50** | ❌ | `attention_mechanism.py` |
+| HOT_1: Higher-order representations | HOT | **1.00** | ✅ | `self_model.py` |
+| HOT_2: Meta-cognitive monitoring | HOT | **0.70** | ✅ | `self_model.py` |
+| RPT_1: Recurrent/feedback processing | RPT | **1.00** | ✅ | `active_inference.py` |
+| RPT_2: Temporal integration | RPT | **0.50** | ❌ | `episodic_memory.py` |
+| IIT_1: Information integration (φ) | IIT | **1.00** | ✅ | `phi_proxy.py` |
+| IIT_2: Causal structure | IIT | **0.70** | ✅ | `causal_chain.py` |
+| EMB_1: Sensorimotor integration | Embodied | **0.80** | ✅ | `online_realtime.py` |
+| EMB_2: Environmental coupling | Embodied | **1.00** | ✅ | `embodied_cognition.py` |
+| SMT_1: Transparent self-model | SMT | **0.85** | ✅ | `self_model.py` |
+| SMT_2: Phenomenal self-model | SMT | **0.70** | ✅ | `narrative_self.py` |
+| AFF_1: Valence and affect | Affective | **1.00** | ✅ | `emotion_state.py` |
 
-**Mean score: 0.668 / 1.0** — *"Significant functional consciousness indicators"*
+**Mean score: 0.818 / 1.0 — 12/14 indicators passing** *(automated, reproducible)*
 
-> Independent evaluation welcome. Run `python consciousness_evaluator.py` for automated scoring.
+> Run it yourself: `python consciousness_evaluator.py` — full results in `report.json`
 
 ---
 

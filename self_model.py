@@ -134,6 +134,76 @@ class SelfModel:
         """llm_router.py bilan moslik uchun alias."""
         return self.get_context_for_llm()
 
+    def estimate_cognitive_load(self) -> float:
+        """HOT_1: Kognitiv yuklanishni baholash (0.0 = engil, 1.0 = og'ir).
+
+        Zaif sohalar ko'p bo'lsa + ishonch past bo'lsa = yuklanish yuqori.
+        Bu Higher-Order Thought uchun — tizim o'z yuklanishini biladi.
+        """
+        weak_penalty = len(self.weak_areas) * 0.1
+        confidence_load = 1.0 - self.overall_confidence
+        load = min(1.0, confidence_load + weak_penalty)
+        return round(load, 3)
+
+    def detect_confusion(self, text: str) -> bool:
+        """HOT_2: Meta-kognitiv monitoring — matnda chalkashlik bormi?
+
+        Agar foydalanuvchi yoki tizim chalkash so'zlar ishlatsa — True.
+        Bu ikkinchi darajali ong: o'z chalkashligini kuzatish.
+        """
+        confusion_markers = [
+            "tushunmadim", "nima deyapsiz", "aniqla", "tushuntir",
+            "bilmadim", "noto'g'ri", "xato", "confused", "unclear",
+            "не понимаю", "непонятно", "объясни", "что значит",
+            "?", "hmm", "uh", "um",
+        ]
+        text_lower = (text or "").lower()
+        return any(m in text_lower for m in confusion_markers)
+
+    def can_do(self, task: str) -> dict:
+        """SMT_1: Shaffof o'z-modeli — tizim nima qila olishini biladi.
+
+        Vazifani tahlil qilib, qila olish-olmasligini va ishonch darajasini qaytaradi.
+        Bu Self-Model Theory uchun asosiy metod.
+        """
+        task_lower = (task or "").lower()
+
+        # Vazifa → qobiliyat xaritasi
+        capability_map = {
+            "browser": ("FACTS", True),
+            "open":    ("FACTS", True),
+            "search":  ("FACTS", True),
+            "remember": ("MEMORY", True),
+            "recall":  ("MEMORY", True),
+            "logic":   ("LOGIC", True),
+            "compare": ("COMPARE", True),
+            "emotion": ("EMOTION", True),
+            "lie":     ("LIE", False),   # yolg'on ayta olmaydi
+            "deceive": ("LIE", False),
+        }
+
+        matched_cap = None
+        base_can_do = True
+        for keyword, (cap_key, can) in capability_map.items():
+            if keyword in task_lower:
+                matched_cap = cap_key
+                base_can_do = can
+                break
+
+        if matched_cap:
+            confidence = self.capabilities.get(matched_cap, DEFAULT_CAPABILITY)
+        else:
+            confidence = self.overall_confidence
+
+        can_do = base_can_do and confidence >= 0.5
+
+        return {
+            "can_do": can_do,
+            "confidence": round(confidence, 3),
+            "capability": matched_cap or "GENERAL",
+            "uncertain": self.should_flag_uncertainty(matched_cap or "LOGIC"),
+        }
+
     def get_full_report(self) -> str:
         lines = ["\n+== O'Z MODELI ==+",
                  f"  Yangilanish: {self.update_count}x",
