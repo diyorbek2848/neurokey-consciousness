@@ -9,7 +9,7 @@
 
 NeuroKey implements a **functional consciousness architecture** — not philosophical claims about subjective experience, but engineering implementations of the major scientific theories of consciousness, integrated into a working voice assistant.
 
-Key distinction: this is not a research demo. It runs 24/7 as a real assistant, responds in <1 second, and maintains persistent identity across sessions.
+Key distinction: this is not a research demo. It runs as a real personal voice assistant, responds in <1 second, and maintains persistent identity across sessions.
 
 ---
 

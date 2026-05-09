@@ -143,7 +143,7 @@
     "reproducibility": "pip install -r requirements.txt && python consciousness_evaluator.py"
   },
   "system_info": {
-    "deployment": "24/7 since Nov 2024",
+    "deployment": "Personal voice assistant, in development since November 2024",
     "latency": "<650ms",
     "modules": 46,
     "repo": "https://github.com/diyorbek2848/neurokey-consciousness"
