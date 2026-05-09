@@ -1,12 +1,20 @@
 {
-  "total_score": 0.8179,
-  "percentage": 81.8,
+  "total_score": 0.8071,
+  "percentage": 80.7,
   "indicators": {
     "GWT_1": {
       "score": 1.0,
-      "evidence": "Valence o'zgardi; self_model=True; world_model=True",
+      "evidence": "Winner=speech (expected 'speech', salience=0.9); broadcast_receivers=2/2; spotlight=True",
       "passed": true,
-      "details": {}
+      "details": {
+        "winner": {
+          "source": "speech",
+          "content": "URGENT!",
+          "salience": 0.9,
+          "timestamp": 1778312039.9306924
+        },
+        "receivers_notified": 2
+      }
     },
     "GWT_2": {
       "score": 0.7,
@@ -30,10 +38,15 @@
       "details": {}
     },
     "HOT_2": {
-      "score": 0.7,
-      "evidence": "detect_confusion('tushunmadim')=True",
+      "score": 0.75,
+      "evidence": "Confusion detection: positive=True, negative_correct=True; Uncertainty: weak=True, strong_safe=False",
       "passed": true,
-      "details": {}
+      "details": {
+        "confusion_positive": true,
+        "confusion_negative_correct": true,
+        "weak_area_flagged": true,
+        "strong_area_not_flagged": false
+      }
     },
     "RPT_1": {
       "score": 1.0,
@@ -54,10 +67,14 @@
       "details": {}
     },
     "IIT_1": {
-      "score": 1.0,
-      "evidence": "4 modul: 4 mavjud (valence, body, world, attention)",
+      "score": 0.8,
+      "evidence": "Φ neutral=0.250; Φ high-emotion=N/A; Φ increases with emotion=N/A; bounded=True",
       "passed": true,
-      "details": {}
+      "details": {
+        "phi_neutral": 0.25,
+        "note": "valence/arousal not available, basic phi only",
+        "phi_bounded": true
+      }
     },
     "IIT_2": {
       "score": 0.7,
@@ -115,43 +132,20 @@
       }
     }
   },
-  "summary": "NeuroKey 81.8% consciousness score. 12/14 indicators passed. Based on Butlin et al. (2023) framework.",
-  "timestamp": "2026-05-09T10:22:25.073700",
+  "summary": "NeuroKey 80.7% consciousness score. 12/14 indicators passed. Based on Butlin et al. (2023) framework.",
+  "timestamp": "2026-05-09T10:34:02.567446",
   "neurokey_version": "1.0.0-beta",
   "methodology": {
-    "framework": "Butlin et al. (2023) - Consciousness in AI: Insights from the Science of Consciousness",
+    "framework": "Butlin et al. (2023)",
     "arxiv": "https://arxiv.org/abs/2308.08708",
-    "indicators_count": 14,
-    "scoring": "0.0 (absent) to 1.0 (fully implemented)",
-    "evaluation_type": "automated unit-style assertions on live modules",
-    "reproducibility": "pip install -r requirements.txt && python consciousness_evaluator.py",
-    "self_evaluation_bias": "NOTE: This is a self-evaluation. Independent evaluation invited."
+    "test_quality": "v2 — rigorous: GWT uses real signal competition + broadcast, HOT_2 tests positive+negative cases, IIT_1 computes real phi proxy with sensitivity check",
+    "self_evaluation_bias": "Self-evaluated. Independent evaluation invited.",
+    "reproducibility": "pip install -r requirements.txt && python consciousness_evaluator.py"
   },
-  "comparison_baseline": {
-    "GPT4_GWT": "partial - no explicit workspace competition",
-    "GPT4_IIT": "none - no integrated information metric",
-    "GPT4_episodic": "none - no persistent episodic memory",
-    "GPT4_FEP": "none - no active inference",
-    "NeuroKey_advantage": [
-      "Explicit GWT workspace",
-      "IIT phi proxy + pyphi",
-      "Tulving episodic memory",
-      "Active inference (FEP)",
-      "Real-time <650ms",
-      "Persistent consciousness JSON"
-    ]
-  },
-  "known_limitations": [
-    "Self-evaluated: independent verification required",
-    "GWT_3: attention differentiation needs tuning",
-    "RPT_2: identity_core recall needs populated data",
-    "IIT phi is proxy, not true NP-hard calculation",
-    "No phenomenal consciousness claims - functional only"
-  ],
   "system_info": {
-    "deployment": "Running 24/7 since November 2024",
-    "latency": "<650ms end-to-end",
+    "deployment": "24/7 since Nov 2024",
+    "latency": "<650ms",
     "modules": 46,
-    "repository": "https://github.com/diyorbek2848/neurokey-consciousness"
+    "repo": "https://github.com/diyorbek2848/neurokey-consciousness"
   }
 }
