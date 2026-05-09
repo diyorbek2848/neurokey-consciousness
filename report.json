@@ -1,0 +1,121 @@
+{
+  "total_score": 0.6357,
+  "percentage": 63.6,
+  "indicators": {
+    "GWT_1": {
+      "score": 1.0,
+      "evidence": "Valence o'zgardi; self_model=True; world_model=True",
+      "passed": true,
+      "details": {}
+    },
+    "GWT_2": {
+      "score": 0.7,
+      "evidence": "Global workspace compete() mavjud va ishlaydi",
+      "passed": true,
+      "details": {}
+    },
+    "GWT_3": {
+      "score": 0.5,
+      "evidence": "Oddiy vs kutilmagan diqqat farqi: 0.00",
+      "passed": false,
+      "details": {
+        "normal": 0.5,
+        "surprise": 0.5
+      }
+    },
+    "HOT_1": {
+      "score": 0.0,
+      "evidence": "'SelfModel' object has no attribute 'estimate_cognitive_load'",
+      "passed": false,
+      "details": {}
+    },
+    "HOT_2": {
+      "score": 0.0,
+      "evidence": "'SelfModel' object has no attribute 'detect_confusion'",
+      "passed": false,
+      "details": {}
+    },
+    "RPT_1": {
+      "score": 1.0,
+      "evidence": "Inference cycle: strategy=True, surprise=True",
+      "passed": true,
+      "details": {
+        "strategy": "update_model",
+        "surprise": -0.0,
+        "free_energy": 0.05,
+        "requires_attention": false,
+        "confidence": 1.0
+      }
+    },
+    "RPT_2": {
+      "score": 0.5,
+      "evidence": "identity_core.recall: 0 natija",
+      "passed": false,
+      "details": {}
+    },
+    "IIT_1": {
+      "score": 1.0,
+      "evidence": "4 modul: 4 mavjud (valence, body, world, attention)",
+      "passed": true,
+      "details": {}
+    },
+    "IIT_2": {
+      "score": 0.7,
+      "evidence": "Body cpu=0.95 -> adapt_response_style length=short",
+      "passed": true,
+      "details": {
+        "length": "short",
+        "speed": "fast",
+        "detail": "minimal",
+        "proactivity": 0.3,
+        "reason": "CPU yuqori yuklangan — qisqa va tez javob"
+      }
+    },
+    "EMB_1": {
+      "score": 0.8,
+      "evidence": "cpu=0.9 -> response_style length=short",
+      "passed": true,
+      "details": {
+        "length": "short",
+        "speed": "fast",
+        "detail": "minimal",
+        "proactivity": 0.3,
+        "reason": "CPU yuqori yuklangan — qisqa va tez javob"
+      }
+    },
+    "EMB_2": {
+      "score": 1.0,
+      "evidence": "should_initiate=False; embodied_context=195 chars",
+      "passed": true,
+      "details": {}
+    },
+    "SMT_1": {
+      "score": 0.0,
+      "evidence": "'SelfModel' object has no attribute 'can_do'",
+      "passed": false,
+      "details": {}
+    },
+    "SMT_2": {
+      "score": 0.7,
+      "evidence": "identity_core.get_personality_prompt: 163 chars",
+      "passed": true,
+      "details": {}
+    },
+    "AFF_1": {
+      "score": 1.0,
+      "evidence": "Valence -0.8 -> directive tone=urgent; RL params mavjud",
+      "passed": true,
+      "details": {
+        "tone": "urgent",
+        "action_bias": "avoid",
+        "urgency": 0.8,
+        "modify_prompt": true,
+        "prompt_prefix": "[DIQQAT: Tizim stress holatida. Ehtiyotkorlik bilan javob ber.]",
+        "attention_boost": 0.6200000000000001
+      }
+    }
+  },
+  "summary": "NeuroKey 63.6% consciousness score. 9/14 indicators passed. Based on Butlin et al. (2023) framework.",
+  "timestamp": "2026-05-09T10:06:07.750104",
+  "neurokey_version": "1.0.0-beta"
+}
