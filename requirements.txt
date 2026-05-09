@@ -1,0 +1,17 @@
+# NeuroKey Consciousness Architecture — Dependencies
+# Core consciousness modules
+numpy>=1.24.0
+python-dotenv>=1.0.0
+
+# IIT Φ (Integrated Information Theory)
+# Note: pyphi requires Python 3.10+. If install fails, phi_proxy.py falls back to proxy calculation.
+pyphi>=1.2.0
+
+# OpenAI Realtime API (online_realtime.py)
+openai>=1.30.0
+
+# Optional: faster-whisper for offline STT
+# faster-whisper>=0.10.0
+
+# Optional: VOSK for offline STT
+# vosk>=0.3.45

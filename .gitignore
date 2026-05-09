@@ -7,3 +7,11 @@ models/
 demo_cache/
 *.wav
 *.mp3
+*.onnx
+*.onnx.json
+consciousness.json
+causal_chain.json
+neurokey.session
+*.log
+*.zip
+__pyphi_cache__/
