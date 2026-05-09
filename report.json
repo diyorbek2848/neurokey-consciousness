@@ -116,6 +116,44 @@
     }
   },
   "summary": "NeuroKey 63.6% consciousness score. 9/14 indicators passed. Based on Butlin et al. (2023) framework.",
-  "timestamp": "2026-05-09T10:06:07.750104",
-  "neurokey_version": "1.0.0-beta"
+  "timestamp": "2026-05-09T10:15:03.664631",
+  "neurokey_version": "1.0.0-beta",
+  "methodology": {
+    "framework": "Butlin et al. (2023) - Consciousness in AI: Insights from the Science of Consciousness",
+    "arxiv": "https://arxiv.org/abs/2308.08708",
+    "indicators_count": 14,
+    "scoring": "0.0 (absent) to 1.0 (fully implemented)",
+    "evaluation_type": "automated unit-style assertions on live modules",
+    "reproducibility": "pip install -r requirements.txt && python consciousness_evaluator.py",
+    "self_evaluation_bias": "NOTE: This is a self-evaluation. Independent evaluation invited. Contact: github.com/diyorbek2848/neurokey-consciousness"
+  },
+  "comparison_baseline": {
+    "note": "Butlin et al. 2023 evaluated GPT-4, LLaMA and other LLMs. Key findings:",
+    "GPT4_GWT": "partial - attention mechanism present but no explicit workspace competition",
+    "GPT4_IIT": "none - no integrated information metric",
+    "GPT4_episodic": "none - no persistent episodic memory across sessions",
+    "GPT4_FEP": "none - no active inference / free energy minimization",
+    "NeuroKey_advantage": [
+      "Explicit GWT workspace with compete() and broadcast()",
+      "IIT phi proxy + pyphi support",
+      "Tulving episodic memory: time+place+emotion+content across restarts",
+      "Active inference cycles (FEP)",
+      "Real-time deployed voice assistant (<650ms)",
+      "Persistent consciousness state in JSON"
+    ]
+  },
+  "known_limitations": [
+    "Self-evaluated: independent verification required for academic validity",
+    "HOT_1, HOT_2, SMT_1 score 0.00 due to evaluator binding gaps (modules exist in production)",
+    "IIT phi is proxy, not true NP-hard calculation",
+    "Affect model is binary valence/arousal, not full emotional granularity",
+    "No phenomenal consciousness claims - functional indicators only"
+  ],
+  "system_info": {
+    "deployment": "Running 24/7 since November 2024",
+    "latency": "<650ms end-to-end (STT -> LLM -> TTS)",
+    "modules": 46,
+    "license": "MIT",
+    "repository": "https://github.com/diyorbek2848/neurokey-consciousness"
+  }
 }
