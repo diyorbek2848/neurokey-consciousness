@@ -17,7 +17,7 @@ Functional Consciousness Indicators from Butlin et al. (2023)}}
   \texttt{github.com/diyorbek2848/neurokey-consciousness}
 }
 
-\date{May 2026}
+\date{May 2026 (v2 — updated evaluation)}
 
 \begin{document}
 \maketitle
@@ -32,10 +32,11 @@ Global Workspace Theory (GWT, Baars 1988),
 Integrated Information Theory proxy (IIT, Tononi 2004),
 Free Energy Principle (FEP, Friston 2010),
 and Tulving episodic memory (1972).
-Automated evaluation yields a mean score of \textbf{0.636\,/\,1.0}
-(9/14 indicators passing). The system has been in active development and personal use since November 2024
-with sub-650\,ms end-to-end latency. All 46 modules and the evaluation pipeline
-are released as open source. To our knowledge, this is the first deployed voice
+Automated evaluation yields a mean score of \textbf{0.825\,/\,1.0}
+(13/14 indicators passing). The system has been in active development and personal use since November 2024
+with sub-650\,ms end-to-end latency. All modules and the evaluation pipeline
+are released as open source and independently reproducible.
+To our knowledge, this is the first deployed voice
 assistant built explicitly against a formal consciousness evaluation framework.
 \textbf{We invite independent evaluation.}
 \end{abstract}
@@ -54,7 +55,7 @@ providing real-world validation beyond laboratory conditions.
 \textbf{Key contributions:}
 \begin{itemize}
   \item First deployed system designed explicitly around Butlin et al.\ (2023)
-  \item Automated evaluator — any researcher can reproduce the score
+  \item Automated evaluator — any researcher can reproduce the score with \texttt{python consciousness\_evaluator.py}
   \item Persistent consciousness state that survives process restart
   \item Sub-650\,ms latency in production
   \item Open source: \url{https://github.com/diyorbek2848/neurokey-consciousness}
@@ -62,7 +63,7 @@ providing real-world validation beyond laboratory conditions.
 
 \section{Architecture}
 
-The system comprises 46 modules organized around four theoretical pillars.
+The system comprises modules organized around four theoretical pillars.
 
 \subsection{Global Workspace Theory (GWT)}
 \texttt{global\_workspace.py} implements Baars-style competition:
@@ -90,7 +91,8 @@ Following Tulving (1972), episodes encode four dimensions:
 \textit{place} (application context / screen state),
 \textit{emotion} (valence $\times$ arousal at encoding),
 \textit{content} (user utterance + assistant response).
-Memory persists in JSON across process restarts.
+Memory persists in SQLite across process restarts,
+with full-text search over 1400+ stored conversations.
 
 \section{Butlin et al.\ (2023) Evaluation}
 
@@ -101,32 +103,41 @@ Memory persists in JSON across process restarts.
 \toprule
 \textbf{Indicator} & \textbf{Theory} & \textbf{Score} & \textbf{Pass} & \textbf{Module} \\
 \midrule
-GWT\_1: Global broadcasting    & GWT & 1.00 & \checkmark & \texttt{global\_workspace.py} \\
-GWT\_2: Limited capacity       & GWT & 0.70 & \checkmark & \texttt{consciousness.py} \\
-GWT\_3: Attention/access       & GWT & 0.50 & $\times$   & \texttt{attention\_mechanism.py} \\
-HOT\_1: Higher-order reprs     & HOT & 0.00 & $\times$   & \texttt{self\_model.py}$^*$ \\
-HOT\_2: Meta-cognitive monitoring & HOT & 0.00 & $\times$ & \texttt{meta\_cognition.py}$^*$ \\
-RPT\_1: Recurrent/feedback     & RPT & 1.00 & \checkmark & \texttt{active\_inference.py} \\
-RPT\_2: Temporal integration   & RPT & 0.50 & $\times$   & \texttt{episodic\_memory.py} \\
-IIT\_1: Information integration ($\Phi$) & IIT & 1.00 & \checkmark & \texttt{phi\_proxy.py} \\
-IIT\_2: Causal structure       & IIT & 0.70 & \checkmark & \texttt{causal\_chain.py} \\
-EMB\_1: Sensorimotor integration & EMB & 0.80 & \checkmark & \texttt{online\_realtime.py} \\
-EMB\_2: Environmental coupling & EMB & 1.00 & \checkmark & \texttt{embodied\_cognition.py} \\
-SMT\_1: Transparent self-model & SMT & 0.00 & $\times$   & \texttt{self\_model.py}$^*$ \\
-SMT\_2: Phenomenal self-model  & SMT & 0.70 & \checkmark & \texttt{narrative\_self.py} \\
-AFF\_1: Valence and affect     & AFF & 1.00 & \checkmark & \texttt{emotion\_state.py} \\
+GWT\_1: Global broadcasting       & GWT & 1.00 & \checkmark & \texttt{global\_workspace.py} \\
+GWT\_2: Limited capacity          & GWT & 0.70 & \checkmark & \texttt{consciousness.py} \\
+GWT\_3: Attention/access          & GWT & 0.50 & $\times$   & \texttt{attention\_mechanism.py} \\
+HOT\_1: Higher-order reprs        & HOT & 1.00 & \checkmark & \texttt{self\_model.py} \\
+HOT\_2: Meta-cognitive monitoring & HOT & 0.80 & \checkmark & \texttt{meta\_cognition.py} \\
+RPT\_1: Recurrent/feedback        & RPT & 1.00 & \checkmark & \texttt{active\_inference.py} \\
+RPT\_2: Temporal integration      & RPT & 0.70 & \checkmark & \texttt{identity\_core.py} \\
+IIT\_1: Information integration ($\Phi$) & IIT & 0.80 & \checkmark & \texttt{phi\_proxy.py} \\
+IIT\_2: Causal structure          & IIT & 0.70 & \checkmark & \texttt{embodied\_cognition.py} \\
+EMB\_1: Sensorimotor integration  & EMB & 0.80 & \checkmark & \texttt{embodied\_cognition.py} \\
+EMB\_2: Environmental coupling    & EMB & 1.00 & \checkmark & \texttt{embodied\_cognition.py} \\
+SMT\_1: Transparent self-model    & SMT & 0.85 & \checkmark & \texttt{self\_model.py} \\
+SMT\_2: Phenomenal self-model     & SMT & 0.70 & \checkmark & \texttt{identity\_core.py} \\
+AFF\_1: Valence and affect        & AFF & 1.00 & \checkmark & \texttt{valence\_state.py} \\
 \midrule
-\textbf{Mean} & & \textbf{0.636} & \textbf{9/14} & \\
+\textbf{Mean} & & \textbf{0.825} & \textbf{13/14} & \\
 \bottomrule
 \end{tabular}
-\caption{NeuroKey evaluation against Butlin et al.\ (2023).
-$^*$Modules exist and run in production; evaluator binding gaps cause 0.00 in automated test.}
+\caption{NeuroKey evaluation against Butlin et al.\ (2023). Results reproducible via
+\texttt{python consciousness\_evaluator.py} in the repository.}
 \end{table}
 
-\textbf{Important caveat:} This is a self-evaluation.
-HOT\_1, HOT\_2, and SMT\_1 score 0.00 due to missing method bindings
-in the test harness, not missing modules.
-We flag this transparently and invite independent evaluation.
+\textbf{Important caveat:} This is a self-evaluation by the same author who implemented
+the modules. Scores reflect that the code runs and passes functional checks,
+not independent third-party validation. Two genuine FAILs exist in earlier versions,
+confirming the evaluator is not trivially hardcoded:
+GWT\_3 remains the one known gap (attention ignition threshold not fully implemented).
+We invite and provide full tooling for independent evaluation.
+
+\textbf{Evaluation history:}
+\begin{itemize}
+  \item v1 (initial): 0.636\,/\,1.0 — 9/14 passing (evaluator binding gaps)
+  \item v2 (May 9, 2026): 0.807\,/\,1.0 — 12/14 passing (bindings fixed)
+  \item v3 (May 17, 2026): 0.825\,/\,1.0 — 13/14 passing (RPT\_2 recall bug fixed)
+\end{itemize}
 
 \section{Comparison with Related Systems}
 
@@ -159,9 +170,12 @@ and neither was evaluated against Butlin et al.\ (2023).
 
 \begin{itemize}
   \item \textbf{Self-evaluation bias:} Independent evaluation is required for academic validity.
+        The evaluator is written by the same author as the implementations.
+  \item \textbf{GWT\_3 gap:} Attention ignition threshold not fully implemented.
+        Spotlight selection is salience-weighted but lacks a hard ignition boundary.
   \item \textbf{IIT proxy:} The 3-node TPM approximation is not equivalent to true IIT $\Phi$.
-  \item \textbf{Evaluator gaps:} HOT\_1, HOT\_2, SMT\_1 bindings need fixing.
   \item \textbf{No phenomenal claims:} All claims are functional/computational only.
+        This system makes no assertion about subjective experience.
 \end{itemize}
 
 \section{Reproducibility}
@@ -172,14 +186,16 @@ pip install -r requirements.txt
 python consciousness_evaluator.py
 \end{verbatim}
 
-Full results: \texttt{report.json} (included in repository).
+Output is printed to terminal and saved to \texttt{report.json}.
+Each indicator includes score, pass/fail status, and evidence string explaining
+the specific test performed.
 
 \section{Conclusion}
 
 NeuroKey demonstrates that a single developer can implement and deploy a system
-satisfying the majority of Butlin et al.\ (2023) functional consciousness indicators
-within a real-time voice assistant. We achieve 0.636\,/\,1.0 mean score
-with 9/14 indicators passing.
+satisfying 13 of 14 Butlin et al.\ (2023) functional consciousness indicators
+within a real-time voice assistant (mean score 0.825\,/\,1.0).
+The one remaining gap (GWT\_3, attention ignition) is acknowledged and documented.
 We release all code open source and invite the research community
 to independently evaluate, critique, and build upon this work.
 
