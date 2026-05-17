@@ -462,9 +462,34 @@ class ConsciousnessEvaluator:
         """Natijalarni JSON ga saqlash."""
         if path is None:
             _root = os.path.dirname(os.path.abspath(__file__))
-            path = os.path.join(_root, "data", "consciousness_report.json")
+            path = os.path.join(_root, "report.json")
         d = os.path.dirname(path)
         if d and not os.path.isdir(d):
             os.makedirs(d, exist_ok=True)
         with open(path, "w", encoding="utf-8") as f:
             json.dump(results, f, ensure_ascii=False, indent=2)
+
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="NeuroKey Butlin 2023 Consciousness Evaluator")
+    parser.add_argument("--output", default="report.json", help="Output JSON file path")
+    args = parser.parse_args()
+
+    evaluator = ConsciousnessEvaluator()
+    results = evaluator.run_all_tests()
+
+    THRESHOLD = 0.6
+    print("\nNeuroKey — Butlin et al. (2023) Consciousness Evaluation")
+    print("=" * 60)
+    for name, data in results["indicators"].items():
+        score = data.get("score", 0)
+        status = "PASS" if data.get("passed") else "FAIL"
+        print(f"{name}: {score:.2f} [{status}]")
+    print("-" * 60)
+    print(f"TOTAL: {results['total_score']:.4f} = {results['percentage']}%")
+    print(f"Summary: {results['summary']}")
+    print()
+
+    evaluator.save_results(results, args.output)
+    print(f"Full results saved to: {args.output}")

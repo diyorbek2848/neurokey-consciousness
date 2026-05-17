@@ -23,18 +23,18 @@ Based on ["Consciousness in AI: Insights from the Science of Consciousness"](htt
 | GWT_2: Limited capacity workspace | Baars GWT | **0.70** | ✅ | `consciousness.py` |
 | GWT_3: Attention and access | Baars GWT | **0.50** | ❌ | `attention_mechanism.py` |
 | HOT_1: Higher-order representations | HOT | **1.00** | ✅ | `self_model.py` |
-| HOT_2: Meta-cognitive monitoring | HOT | **0.70** | ✅ | `self_model.py` |
+| HOT_2: Meta-cognitive monitoring | HOT | **0.80** | ✅ | `meta_cognition.py` |
 | RPT_1: Recurrent/feedback processing | RPT | **1.00** | ✅ | `active_inference.py` |
-| RPT_2: Temporal integration | RPT | **0.50** | ❌ | `episodic_memory.py` |
-| IIT_1: Information integration (φ) | IIT | **1.00** | ✅ | `phi_proxy.py` |
-| IIT_2: Causal structure | IIT | **0.70** | ✅ | `causal_chain.py` |
-| EMB_1: Sensorimotor integration | Embodied | **0.80** | ✅ | `online_realtime.py` |
+| RPT_2: Temporal integration | RPT | **0.70** | ✅ | `identity_core.py` |
+| IIT_1: Information integration (φ) | IIT | **0.80** | ✅ | `phi_proxy.py` |
+| IIT_2: Causal structure | IIT | **0.70** | ✅ | `embodied_cognition.py` |
+| EMB_1: Sensorimotor integration | Embodied | **0.80** | ✅ | `embodied_cognition.py` |
 | EMB_2: Environmental coupling | Embodied | **1.00** | ✅ | `embodied_cognition.py` |
 | SMT_1: Transparent self-model | SMT | **0.85** | ✅ | `self_model.py` |
-| SMT_2: Phenomenal self-model | SMT | **0.70** | ✅ | `narrative_self.py` |
-| AFF_1: Valence and affect | Affective | **1.00** | ✅ | `emotion_state.py` |
+| SMT_2: Phenomenal self-model | SMT | **0.70** | ✅ | `identity_core.py` |
+| AFF_1: Valence and affect | Affective | **1.00** | ✅ | `valence_state.py` |
 
-**Mean score: 0.818 / 1.0 — 12/14 indicators passing** *(automated, reproducible)*
+**Mean score: 0.825 / 1.0 — 13/14 indicators passing** *(automated, reproducible)*
 
 > Run it yourself: `python consciousness_evaluator.py` — full results in `report.json`
 
@@ -158,8 +158,9 @@ For manual review: each indicator maps to specific modules listed in the table a
 
 ## Limitations
 
+- **Self-evaluation**: `consciousness_evaluator.py` is written by the same author as the implementations. Scores reflect that code runs and passes functional checks — not independent third-party validation.
+- **GWT_3 (FAIL)**: Attention ignition threshold not fully implemented — spotlight selection is weighted but lacks hard ignition boundary. Known gap.
 - **IIT φ**: Computed via proxy (`phi_proxy.py`). True IIT φ is NP-hard to compute exactly.
-- **Affect**: Binary satisfaction/frustration only. Richer emotional granularity in progress.
 - **Phenomenal consciousness**: This system makes no claims about subjective experience. Functional indicators only.
 
 ---
