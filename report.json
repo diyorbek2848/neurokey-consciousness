@@ -1,6 +1,6 @@
 {
-  "total_score": 0.8071,
-  "percentage": 80.7,
+  "total_score": 0.825,
+  "percentage": 82.5,
   "indicators": {
     "GWT_1": {
       "score": 1.0,
@@ -11,7 +11,7 @@
           "source": "speech",
           "content": "URGENT!",
           "salience": 0.9,
-          "timestamp": 1778312039.9306924
+          "timestamp": 1779134841.2377024
         },
         "receivers_notified": 2
       }
@@ -33,19 +33,18 @@
     },
     "HOT_1": {
       "score": 1.0,
-      "evidence": "Self-description: 103 chars; load=0.54",
+      "evidence": "Self-description: 71 chars; load=0.35",
       "passed": true,
       "details": {}
     },
     "HOT_2": {
-      "score": 0.75,
-      "evidence": "Confusion detection: positive=True, negative_correct=True; Uncertainty: weak=True, strong_safe=False",
+      "score": 0.8,
+      "evidence": "Confusion detection: positive=True, negative_correct=True; Uncertainty: weak=None, strong_safe=None",
       "passed": true,
       "details": {
         "confusion_positive": true,
         "confusion_negative_correct": true,
-        "weak_area_flagged": true,
-        "strong_area_not_flagged": false
+        "note": "No benchmark history, but monitoring mechanism present"
       }
     },
     "RPT_1": {
@@ -61,9 +60,9 @@
       }
     },
     "RPT_2": {
-      "score": 0.5,
-      "evidence": "identity_core.recall: 0 natija",
-      "passed": false,
+      "score": 0.7,
+      "evidence": "identity_core.recall: 1 natija",
+      "passed": true,
       "details": {}
     },
     "IIT_1": {
@@ -114,7 +113,7 @@
     },
     "SMT_2": {
       "score": 0.7,
-      "evidence": "identity_core.get_personality_prompt: 163 chars",
+      "evidence": "identity_core.get_personality_prompt: 122 chars",
       "passed": true,
       "details": {}
     },
@@ -132,20 +131,7 @@
       }
     }
   },
-  "summary": "NeuroKey 80.7% consciousness score. 12/14 indicators passed. Based on Butlin et al. (2023) framework.",
-  "timestamp": "2026-05-09T10:34:02.567446",
-  "neurokey_version": "1.0.0-beta",
-  "methodology": {
-    "framework": "Butlin et al. (2023)",
-    "arxiv": "https://arxiv.org/abs/2308.08708",
-    "test_quality": "v2 — rigorous: GWT uses real signal competition + broadcast, HOT_2 tests positive+negative cases, IIT_1 computes real phi proxy with sensitivity check",
-    "self_evaluation_bias": "Self-evaluated. Independent evaluation invited.",
-    "reproducibility": "pip install -r requirements.txt && python consciousness_evaluator.py"
-  },
-  "system_info": {
-    "deployment": "Personal voice assistant, in development since November 2024",
-    "latency": "<650ms",
-    "modules": 46,
-    "repo": "https://github.com/diyorbek2848/neurokey-consciousness"
-  }
+  "summary": "NeuroKey 82.5% consciousness score. 13/14 indicators passed. Based on Butlin et al. (2023) framework.",
+  "timestamp": "2026-05-18T23:07:31.843027",
+  "neurokey_version": "1.0.0-beta"
 }
