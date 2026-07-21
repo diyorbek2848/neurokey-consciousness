@@ -1,0 +1,648 @@
+{
+  "baseline": {
+    "score": 0.921,
+    "total_len": 21926
+  },
+  "sensitivity": [
+    {
+      "section": "SEMANTIK XOTIRA — o'xshash suhbatlar:",
+      "distinct": 6,
+      "total": 6,
+      "present": 5,
+      "avg_len": 338
+    },
+    {
+      "section": "ICHKI FIKr",
+      "distinct": 6,
+      "total": 6,
+      "present": 6,
+      "avg_len": 202
+    },
+    {
+      "section": "САМОСТЬ",
+      "distinct": 6,
+      "total": 6,
+      "present": 6,
+      "avg_len": 55
+    },
+    {
+      "section": "JISMONIY",
+      "distinct": 6,
+      "total": 6,
+      "present": 6,
+      "avg_len": 38
+    },
+    {
+      "section": "ВОСПРИЯТИЕ ВРЕМЕНИ",
+      "distinct": 6,
+      "total": 6,
+      "present": 6,
+      "avg_len": 37
+    },
+    {
+      "section": "ERKIN IRODA",
+      "distinct": 3,
+      "total": 6,
+      "present": 6,
+      "avg_len": 65
+    },
+    {
+      "section": "NOANIQLIK",
+      "distinct": 2,
+      "total": 6,
+      "present": 6,
+      "avg_len": 54
+    },
+    {
+      "section": "VAQT",
+      "distinct": 2,
+      "total": 6,
+      "present": 6,
+      "avg_len": 25
+    },
+    {
+      "section": "SABAB-NATIJA MA'LUMOTNOMA",
+      "distinct": 2,
+      "total": 6,
+      "present": 1,
+      "avg_len": 15
+    },
+    {
+      "section": "DOIMIY XOTIRA — tarix",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 412
+    },
+    {
+      "section": "HAYOT HIKOYASI",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 314
+    },
+    {
+      "section": "MAQSADLAR",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 178
+    },
+    {
+      "section": "TURING",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 163
+    },
+    {
+      "section": "IRODA",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 127
+    },
+    {
+      "section": "САМОСОВЕРШЕНСТВОВАНИЕ",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 103
+    },
+    {
+      "section": "IJTIMOIY BOG'LIQ",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 102
+    },
+    {
+      "section": "AXLOQIY FIKRLASH",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 99
+    },
+    {
+      "section": "ДОЛГОСРОЧНАЯ ПАМЯТЬ",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 93
+    },
+    {
+      "section": "MUHIM VOQEALAR",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 82
+    },
+    {
+      "section": "Bot",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 80
+    },
+    {
+      "section": "СОЦИАЛЬНЫЙ",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 74
+    },
+    {
+      "section": "FOYDALANUVCHI MODELI",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 67
+    },
+    {
+      "section": "ЗДОРОВЬЕ СИСТЕМЫ",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 62
+    },
+    {
+      "section": "META-ISHONCH",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 54
+    },
+    {
+      "section": "HISSIYOT-27",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 51
+    },
+    {
+      "section": "META²",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 47
+    },
+    {
+      "section": "HISSIY XOTIRA",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 44
+    },
+    {
+      "section": "FENOMENAL",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 43
+    },
+    {
+      "section": "ONG DARAJASI",
+      "distinct": 1,
+      "total": 6,
+      "present": 6,
+      "avg_len": 14
+    }
+  ],
+  "ablation": [
+    {
+      "module": "permanent_memory",
+      "state": "OK",
+      "lost_chars": 8834,
+      "lost_sections": [
+        "Bot",
+        "DOIMIY XOTIRA — tarix",
+        "ERKIN IRODA",
+        "HISSIY XOTIRA",
+        "ICHKI FIKr",
+        "META²",
+        "MUHIM VOQEALAR",
+        "TURING",
+        "ДОЛГОСРОЧНАЯ ПАМЯТЬ",
+        "САМОСТЬ"
+      ],
+      "score_delta": 0.092,
+      "note": ""
+    },
+    {
+      "module": "vector_memory",
+      "state": "OK",
+      "lost_chars": 2153,
+      "lost_sections": [
+        "SEMANTIK XOTIRA — o'xshash suhbatlar:"
+      ],
+      "score_delta": 0.015,
+      "note": ""
+    },
+    {
+      "module": "autobiographical_memory",
+      "state": "OK",
+      "lost_chars": 1991,
+      "lost_sections": [
+        "HAYOT HIKOYASI"
+      ],
+      "score_delta": 0.009,
+      "note": ""
+    },
+    {
+      "module": "language_of_thought",
+      "state": "OK",
+      "lost_chars": 1296,
+      "lost_sections": [
+        "ICHKI FIKr"
+      ],
+      "score_delta": 0.009,
+      "note": ""
+    },
+    {
+      "module": "episodic_memory",
+      "state": "OK",
+      "lost_chars": 1224,
+      "lost_sections": [
+        "ДОЛГОСРОЧНАЯ ПАМЯТЬ"
+      ],
+      "score_delta": 0.015,
+      "note": ""
+    },
+    {
+      "module": "goal_system",
+      "state": "OK",
+      "lost_chars": 1151,
+      "lost_sections": [
+        "MAQSADLAR"
+      ],
+      "score_delta": -0.016,
+      "note": ""
+    },
+    {
+      "module": "turing_test_prep",
+      "state": "OK",
+      "lost_chars": 1030,
+      "lost_sections": [
+        "TURING"
+      ],
+      "score_delta": -0.007,
+      "note": ""
+    },
+    {
+      "module": "volition",
+      "state": "OK",
+      "lost_chars": 806,
+      "lost_sections": [
+        "IRODA"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "emotional_granularity",
+      "state": "OK",
+      "lost_chars": 792,
+      "lost_sections": [
+        "HISSIYOT-27"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "self_improvement_loop",
+      "state": "OK",
+      "lost_chars": 765,
+      "lost_sections": [
+        "САМОСОВЕРШЕНСТВОВАНИЕ"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "social_bonding",
+      "state": "OK",
+      "lost_chars": 725,
+      "lost_sections": [
+        "IJTIMOIY BOG'LIQ"
+      ],
+      "score_delta": 0.01,
+      "note": ""
+    },
+    {
+      "module": "moral_reasoning",
+      "state": "OK",
+      "lost_chars": 707,
+      "lost_sections": [
+        "AXLOQIY FIKRLASH"
+      ],
+      "score_delta": 0.006,
+      "note": ""
+    },
+    {
+      "module": "theory_of_mind",
+      "state": "OK",
+      "lost_chars": 539,
+      "lost_sections": [
+        "FOYDALANUVCHI MODELI"
+      ],
+      "score_delta": 0.013,
+      "note": ""
+    },
+    {
+      "module": "social_simulation",
+      "state": "OK",
+      "lost_chars": 521,
+      "lost_sections": [
+        "СОЦИАЛЬНЫЙ"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "self_healing",
+      "state": "OK",
+      "lost_chars": 492,
+      "lost_sections": [
+        "ЗДОРОВЬЕ СИСТЕМЫ"
+      ],
+      "score_delta": 0.009,
+      "note": ""
+    },
+    {
+      "module": "free_will_simulator",
+      "state": "OK",
+      "lost_chars": 482,
+      "lost_sections": [
+        "ERKIN IRODA"
+      ],
+      "score_delta": 0.009,
+      "note": ""
+    },
+    {
+      "module": "metacognitive_confidence",
+      "state": "OK",
+      "lost_chars": 420,
+      "lost_sections": [
+        "META-ISHONCH"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "quantum_cognition",
+      "state": "OK",
+      "lost_chars": 402,
+      "lost_sections": [
+        "NOANIQLIK"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "vision_emotion_bridge",
+      "state": "OK",
+      "lost_chars": 396,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "self_narrative",
+      "state": "OK",
+      "lost_chars": 386,
+      "lost_sections": [
+        "САМОСТЬ"
+      ],
+      "score_delta": 0.013,
+      "note": ""
+    },
+    {
+      "module": "emotion_memory_link",
+      "state": "OK",
+      "lost_chars": 359,
+      "lost_sections": [
+        "HISSIY XOTIRA"
+      ],
+      "score_delta": 0.01,
+      "note": ""
+    },
+    {
+      "module": "temporal_binding",
+      "state": "OK",
+      "lost_chars": 345,
+      "lost_sections": [
+        "ВОСПРИЯТИЕ ВРЕМЕНИ"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "meta_meta_cognition",
+      "state": "OK",
+      "lost_chars": 329,
+      "lost_sections": [
+        "META²"
+      ],
+      "score_delta": -0.007,
+      "note": ""
+    },
+    {
+      "module": "phenomenal_binding",
+      "state": "OK",
+      "lost_chars": 326,
+      "lost_sections": [
+        "FENOMENAL"
+      ],
+      "score_delta": -0.029,
+      "note": ""
+    },
+    {
+      "module": "embodied_grounding",
+      "state": "OK",
+      "lost_chars": 293,
+      "lost_sections": [
+        "JISMONIY"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "causal_chain",
+      "state": "OK",
+      "lost_chars": 119,
+      "lost_sections": [
+        "SABAB-NATIJA MA'LUMOTNOMA"
+      ],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "global_workspace",
+      "state": "OK",
+      "lost_chars": -3,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "active_inference",
+      "state": "OK",
+      "lost_chars": -3,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "proactive_speech",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "dream_consolidator",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "narrative_self",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "curiosity_engine",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "long_term_memory",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "meta_cognition",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "attention_schema",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "counterfactual_engine",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "cross_modal_binding",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "working_memory_buffer",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "dream_processor",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.009,
+      "note": ""
+    },
+    {
+      "module": "self_consistency_checker",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.01,
+      "note": ""
+    },
+    {
+      "module": "continuous_learning",
+      "state": "OK",
+      "lost_chars": -7,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "background_sensor",
+      "state": "OK",
+      "lost_chars": -8,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "creativity_engine",
+      "state": "OK",
+      "lost_chars": -8,
+      "lost_sections": [],
+      "score_delta": -0.007,
+      "note": ""
+    },
+    {
+      "module": "predictive_layer",
+      "state": "OK",
+      "lost_chars": -10,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    },
+    {
+      "module": "pain_pleasure_signal",
+      "state": "OK",
+      "lost_chars": -10,
+      "lost_sections": [],
+      "score_delta": -0.007,
+      "note": ""
+    },
+    {
+      "module": "valence_state",
+      "state": "OK",
+      "lost_chars": -13,
+      "lost_sections": [],
+      "score_delta": -0.007,
+      "note": ""
+    },
+    {
+      "module": "arousal_state",
+      "state": "OK",
+      "lost_chars": -14,
+      "lost_sections": [],
+      "score_delta": 0.0,
+      "note": ""
+    }
+  ]
+}

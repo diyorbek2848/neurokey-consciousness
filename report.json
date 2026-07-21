@@ -11,7 +11,7 @@
           "source": "speech",
           "content": "URGENT!",
           "salience": 0.9,
-          "timestamp": 1779134841.2377024
+          "timestamp": 1784626069.9954915
         },
         "receivers_notified": 2
       }
@@ -132,6 +132,6 @@
     }
   },
   "summary": "NeuroKey 82.5% consciousness score. 13/14 indicators passed. Based on Butlin et al. (2023) framework.",
-  "timestamp": "2026-05-18T23:07:31.843027",
+  "timestamp": "2026-07-21T12:27:58.142979",
   "neurokey_version": "1.0.0-beta"
 }

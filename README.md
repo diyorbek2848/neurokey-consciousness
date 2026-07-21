@@ -11,32 +11,92 @@ NeuroKey implements a **functional consciousness architecture** — not philosop
 
 Key distinction: this is not a research demo. It runs as a real personal voice assistant, responds in <1 second, and maintains persistent identity across sessions.
 
+> ### ⚠️ Scope of this repository
+>
+> This repo is an **open subset**: 28 of the full system's 290 modules.
+> `consciousness_orchestrator.py` expects 46 modules that are **not included here**. Run
+> against this subset it degrades silently — 62 characters of context and a 0.50 score,
+> versus 3 731 characters and 0.92 in the full system.
+>
+> **Runs standalone here:** `global_workspace.py`, `consciousness_evaluator.py`,
+> `neurokey_demo.py`, `phi_proxy.py`, the state modules.
+> **Does not:** the orchestrator, `episodic_memory.py` (needs `permanent_memory`).
+>
+> Measurements below marked *(full system)* were taken on the complete 290-module build.
+
 ---
 
 ## Butlin et al. (2023) Evaluation
 
-Based on ["Consciousness in AI: Insights from the Science of Consciousness"](https://arxiv.org/abs/2308.08708) — 14 indicators:
+Based on ["Consciousness in AI: Insights from the Science of Consciousness"](https://arxiv.org/abs/2308.08708).
 
-| Indicator | Theory | Score | Pass | Module |
-|-----------|--------|-------|------|--------|
-| GWT_1: Global broadcasting | Baars GWT | **1.00** | ✅ | `global_workspace.py` |
-| GWT_2: Limited capacity workspace | Baars GWT | **0.70** | ✅ | `consciousness.py` |
-| GWT_3: Attention and access | Baars GWT | **0.50** | ❌ | `attention_mechanism.py` |
-| HOT_1: Higher-order representations | HOT | **1.00** | ✅ | `self_model.py` |
-| HOT_2: Meta-cognitive monitoring | HOT | **0.80** | ✅ | `meta_cognition.py` |
-| RPT_1: Recurrent/feedback processing | RPT | **1.00** | ✅ | `active_inference.py` |
-| RPT_2: Temporal integration | RPT | **0.70** | ✅ | `identity_core.py` |
-| IIT_1: Information integration (φ) | IIT | **0.80** | ✅ | `phi_proxy.py` |
-| IIT_2: Causal structure | IIT | **0.70** | ✅ | `embodied_cognition.py` |
-| EMB_1: Sensorimotor integration | Embodied | **0.80** | ✅ | `embodied_cognition.py` |
-| EMB_2: Environmental coupling | Embodied | **1.00** | ✅ | `embodied_cognition.py` |
-| SMT_1: Transparent self-model | SMT | **0.85** | ✅ | `self_model.py` |
-| SMT_2: Phenomenal self-model | SMT | **0.70** | ✅ | `identity_core.py` |
-| AFF_1: Valence and affect | Affective | **1.00** | ✅ | `valence_state.py` |
+**Correction (2026-07):** earlier versions of this table listed 14 indicators that were not
+Butlin's. They substituted IIT, Self-Model Theory and affect indicators for seven of the
+actual ones. Butlin et al. explicitly **exclude IIT** — *"incompatible with our working
+assumption of computational functionalism."* The real list and our honest status:
 
-**Mean score: 0.825 / 1.0 — 13/14 indicators passing** *(automated, reproducible)*
+| Indicator | Description | Status | Module |
+|-----------|-------------|--------|--------|
+| GWT-1 | Multiple specialised systems in parallel | **Full** | 47 modules |
+| GWT-2 | Limited-capacity workspace, bottleneck | **Full** | `global_workspace.py` |
+| GWT-3 | Global broadcast to all modules | **Full** | `global_workspace.py` |
+| AE-2 | Embodiment: output–input contingencies | **Full** | `embodied_grounding.py` |
+| HOT-2 | Metacognitive monitoring | Partial | `meta_cognition.py` |
+| PP-1 | Predictive coding in input modules | Partial | `predictive_layer.py` |
+| AST-1 | Predictive model of own attention | Partial | `attention_schema.py` |
+| AE-1 | Agency under competing goals | Partial | `goal_system.py` |
+| RPT-1 | Algorithmic recurrence in input modules | **None** | — |
+| RPT-2 | Integrated perceptual representations | **None** | — |
+| GWT-4 | State-dependent attention | **None** | — |
+| HOT-1 | Generative / top-down / noisy perception | **None** | — |
+| HOT-3 | Belief update driven by metacognition | **None** | — |
+| HOT-4 | Sparse, smooth coding → quality space | **None** | — |
 
-> Run it yourself: `python consciousness_evaluator.py` — full results in `report.json`
+**4 full · 4 partial · 6 absent.**
+
+### The 82.5% score is retracted
+
+`consciousness_evaluator.py` returns **0.825 on this 28-module subset** and **0.821 on the
+full 290-module system**. A 46-module difference it cannot see. The reason is in the test
+bodies — 10 of 14 are existence checks:
+
+```python
+if gw and hasattr(gw, "compete"):
+    return {"score": 0.7, "evidence": "compete() present"}
+```
+
+A test that cannot fail measures nothing. Treat this script as a smoke test only.
+
+### What replaced it: ablation *(full system)*
+
+Each of the 47 modules was disabled in turn and its contribution to the assembled context
+measured across six diverse prompts:
+
+| Result | Count |
+|--------|------:|
+| Modules with measurable contribution | **26 / 47** |
+| Modules contributing nothing | **21 / 47** |
+| Modules whose removal crashed the system | 0 / 47 |
+
+Largest contributors — `permanent_memory` (8 834 chars), `vector_memory` (2 153),
+`autobiographical_memory` (1 991), `language_of_thought` (1 296), `episodic_memory` (1 224).
+Four of the top five are memory. **Memory is what this system demonstrably does.**
+
+Null contributors include `global_workspace`, `active_inference`, `valence_state`,
+`arousal_state`, `meta_cognition`, `predictive_layer`, `attention_schema` — the modules
+implementing the GWT and FEP commitments this README advertises.
+
+### Input sensitivity *(full system)*
+
+| Behaviour | Sections | Characters | Share |
+|-----------|---------:|-----------:|------:|
+| Varies with input | 5 | 670 | 22% |
+| Partially varies | 4 | 159 | 5% |
+| **Constant regardless of input** | **20** | **2 209** | **73%** |
+
+Given *"I am exhausted today"* and *"Great news, the investor agreed!"* the affect section
+emits the identical string `valence:+0.5 arousal:calm`. 73% of the "consciousness context" is
+invariant text.
 
 ---
 
@@ -67,7 +127,12 @@ Based on ["Consciousness in AI: Insights from the Science of Consciousness"](htt
                     └───────────────┘
 ```
 
-**46 modules** — all lazy-loaded, system degrades gracefully if any module fails.
+**47 orchestrated modules in the full system; 28 published here.** All lazy-loaded, and the
+ablation study confirms graceful degradation directly: 0 of 47 crashed when removed.
+
+The same mechanism has a cost. Silent degradation is why 46 missing modules went unnoticed in
+this repo, and why 21 modules contributing nothing were never detected. If you fork this,
+add a startup report that names what failed to load.
 
 Theoretical bases:
 - **GWT** — Global Workspace Theory (Bernard Baars, 1988)
@@ -87,7 +152,8 @@ Theoretical bases:
 | Theoretical basis | None stated | GWT + IIT + FEP + Tulving |
 | Self-model | No | Yes — benchmark-calibrated |
 | Persistence | External storage | Consciousness state JSON, survives restart |
-| Formal evaluation | No | Butlin 2023, 14 indicators, automated |
+| Formal evaluation | No | Butlin 2023 mapping (4 full / 4 partial / 6 absent) |
+| Per-module ablation | No | Yes — 26 of 47 contribute measurably |
 | Deployment | Cloud API | Local voice assistant, <1s latency |
 
 ---
@@ -129,39 +195,81 @@ NeuroKey:  "Помню, ты говорил про встречу с инвес�
 ## Installation
 
 ```bash
-git clone https://github.com/[username]/neurokey-consciousness
+git clone https://github.com/diyorbek2848/neurokey-consciousness
 cd neurokey-consciousness
 pip install -r requirements.txt
 
-# Run evaluation
+# Smoke test — checks modules load. NOT a consciousness measurement (see above).
 python consciousness_evaluator.py
 
-# Run voice assistant (requires OpenAI API key in .env)
-ONLINE_Realtime.bat
+# Behavioural demo — runs standalone
+python neurokey_demo.py
 ```
+
+`ONLINE_Realtime.bat` and the voice pipeline are part of the full system, not this subset.
 
 ---
 
 ## Evaluation
 
-To independently evaluate this system against Butlin 2023 criteria:
+### `ablation_test.py` — the measurement we actually stand behind
 
 ```bash
-python consciousness_evaluator.py --output report.json
+python ablation_test.py
 ```
 
-Output: JSON with scores per indicator + evidence + overall rating.
+Disables each orchestrated module in turn (by blocking its import so `_safe_import` returns
+`None`), then measures across six deliberately dissimilar prompts:
 
-For manual review: each indicator maps to specific modules listed in the table above. Code is documented with theoretical references.
+- **Ablation** — how many characters and which sections disappear from the assembled context
+- **Sensitivity** — how many distinct values each section takes across the six prompts
+
+A section identical across all six carries zero input-dependent information. A module whose
+removal changes nothing contributes nothing measurable. **Both checks can fail, and both did.**
+
+Results are written to `ablation_report.json`. The figures in this README come from running
+this harness against the full 290-module system; run against this 28-module subset it will
+report most modules as absent, which is itself the correct answer for the subset.
+
+### `consciousness_evaluator.py` — smoke test only
+
+Outputs per-indicator JSON. See the retraction above before citing any number from it.
+
+---
+
+## Reproducing the sensitivity finding by hand
+
+```python
+import consciousness_orchestrator as o     # full system required
+a = o.get_full_context("I am exhausted today, I don't want to do anything.")
+b = o.get_full_context("Great news! The investor agreed to meet!")
+# The [AFFECT] line is identical in both.
+```
 
 ---
 
 ## Limitations
 
-- **Self-evaluation**: `consciousness_evaluator.py` is written by the same author as the implementations. Scores reflect that code runs and passes functional checks — not independent third-party validation.
-- **GWT_3 (FAIL)**: Attention ignition threshold not fully implemented — spotlight selection is weighted but lacks hard ignition boundary. Known gap.
-- **IIT φ**: Computed via proxy (`phi_proxy.py`). True IIT φ is NP-hard to compute exactly.
-- **Phenomenal consciousness**: This system makes no claims about subjective experience. Functional indicators only.
+- **The evaluator score is withdrawn.** `consciousness_evaluator.py` is written by the same
+  author as the implementations, and 10 of its 14 checks test module presence rather than
+  behaviour. It scores 0.825 with 46 modules missing and 0.821 with all present. Use it as a
+  smoke test; do not cite the number.
+- **73% of the context is constant.** The largest known defect. 20 of 29 sections are
+  byte-identical regardless of input, including affect and moral reasoning.
+- **The affective path does not respond to affect.** `valence:+0.5 arousal:calm` is emitted
+  for "I am exhausted" and "great news!" alike.
+- **6 of 14 Butlin indicators are absent**, notably GWT-4, HOT-3 and HOT-4. Four more exist
+  as modules that contribute nothing measurable.
+- **IIT φ is outside the Butlin framework**, which excludes IIT by design. Our proxy uses a
+  fixed 3-node example TPM not derived from the system's own causal structure, so φ takes at
+  most 8 values — and was constant at 0.53 across all six probe inputs.
+- **The ablation study measures one output path** (`get_full_context()`). A module scoring
+  zero there may still be exercised elsewhere in the 290-file runtime.
+- **Six probe inputs** is enough to establish that a section is constant, not enough to
+  characterise how the responsive ones vary.
+- **Phenomenal consciousness**: this system makes no claims about subjective experience.
+  Butlin et al.'s properties are *indicators* — evidence bearing on a question — not a
+  specification that confers consciousness when satisfied.
 
 ---
 

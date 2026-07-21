@@ -7,8 +7,8 @@
 \usepackage{geometry}
 \geometry{margin=2.5cm}
 
-\title{\textbf{NeuroKey: A Deployed Voice Assistant Implementing\\
-Functional Consciousness Indicators from Butlin et al. (2023)}}
+\title{\textbf{Which Consciousness Modules Actually Do Anything?\\
+An Ablation Study of a Deployed Voice Assistant}}
 
 \author{
   Diyorbek\\
@@ -23,22 +23,32 @@ Functional Consciousness Indicators from Butlin et al. (2023)}}
 \maketitle
 
 \begin{abstract}
-We present NeuroKey, a deployed real-time voice assistant that explicitly implements
-all 14 functional consciousness indicators from Butlin et al.\ (2023).
-Unlike prior evaluations that apply the framework post-hoc to existing language models,
-NeuroKey was designed from the ground up around these indicators,
-integrating four complementary theories:
-Global Workspace Theory (GWT, Baars 1988),
-Integrated Information Theory proxy (IIT, Tononi 2004),
-Free Energy Principle (FEP, Friston 2010),
-and Tulving episodic memory (1972).
-Automated evaluation yields a mean score of \textbf{0.825\,/\,1.0}
-(13/14 indicators passing). The system has been in active development and personal use since November 2024
-with sub-650\,ms end-to-end latency. All modules and the evaluation pipeline
-are released as open source and independently reproducible.
-To our knowledge, this is the first deployed voice
-assistant built explicitly against a formal consciousness evaluation framework.
-\textbf{We invite independent evaluation.}
+We present NeuroKey, a deployed real-time voice assistant built around the functional
+consciousness indicators of Butlin et al.\ (2023), and an ablation study measuring which
+of its consciousness modules demonstrably affect its output.
+
+Of Butlin et al.'s 14 indicators we implement \textbf{4 fully} (GWT-1, GWT-2, GWT-3, AE-2),
+\textbf{4 partially} (HOT-2, PP-1, AST-1, AE-1) and \textbf{6 not at all} (RPT-1, RPT-2,
+GWT-4, HOT-1, HOT-3, HOT-4). We additionally implement modules from Integrated Information
+Theory and Self-Model Theory; we note that Butlin et al.\ explicitly exclude IIT as
+incompatible with their working assumption of computational functionalism, so these fall
+outside their framework and are reported separately.
+
+Our contribution is measurement rather than coverage. Disabling each of 47 orchestrated
+modules in turn, we find that \textbf{26 produce a measurable contribution to the assembled
+context and 21 produce none} --- the null set including the modules implementing the paper's
+own GWT, FEP and predictive-coding commitments. A sensitivity analysis over six diverse
+inputs finds \textbf{20 of 29 context sections byte-identical regardless of input}: 73\,\% of
+the assembled ``consciousness context'' carries no input-dependent information. The affective
+section emits the same valence for ``I am exhausted'' and ``great news!''.
+
+We also retract our previously reported score of 0.825/1.0. That evaluator returns 0.825 on a
+28-module subset and 0.821 on the full 290-module system, a 46-module difference it cannot
+detect, because 10 of its 14 checks assert module presence rather than behaviour.
+
+We report these negative results because they are, to our knowledge, the first per-module
+ablation published for a system of this kind, and because the alternative --- a score that
+cannot fail --- is not evidence. \textbf{We invite independent evaluation.}
 \end{abstract}
 
 \section{Introduction}
@@ -99,45 +109,71 @@ with full-text search over 1400+ stored conversations.
 \begin{table}[h]
 \centering
 \small
-\begin{tabular}{llccl}
+\begin{tabular}{llll}
 \toprule
-\textbf{Indicator} & \textbf{Theory} & \textbf{Score} & \textbf{Pass} & \textbf{Module} \\
+\textbf{Indicator} & \textbf{Description} & \textbf{Status} & \textbf{Module} \\
 \midrule
-GWT\_1: Global broadcasting       & GWT & 1.00 & \checkmark & \texttt{global\_workspace.py} \\
-GWT\_2: Limited capacity          & GWT & 0.70 & \checkmark & \texttt{consciousness.py} \\
-GWT\_3: Attention/access          & GWT & 0.50 & $\times$   & \texttt{attention\_mechanism.py} \\
-HOT\_1: Higher-order reprs        & HOT & 1.00 & \checkmark & \texttt{self\_model.py} \\
-HOT\_2: Meta-cognitive monitoring & HOT & 0.80 & \checkmark & \texttt{meta\_cognition.py} \\
-RPT\_1: Recurrent/feedback        & RPT & 1.00 & \checkmark & \texttt{active\_inference.py} \\
-RPT\_2: Temporal integration      & RPT & 0.70 & \checkmark & \texttt{identity\_core.py} \\
-IIT\_1: Information integration ($\Phi$) & IIT & 0.80 & \checkmark & \texttt{phi\_proxy.py} \\
-IIT\_2: Causal structure          & IIT & 0.70 & \checkmark & \texttt{embodied\_cognition.py} \\
-EMB\_1: Sensorimotor integration  & EMB & 0.80 & \checkmark & \texttt{embodied\_cognition.py} \\
-EMB\_2: Environmental coupling    & EMB & 1.00 & \checkmark & \texttt{embodied\_cognition.py} \\
-SMT\_1: Transparent self-model    & SMT & 0.85 & \checkmark & \texttt{self\_model.py} \\
-SMT\_2: Phenomenal self-model     & SMT & 0.70 & \checkmark & \texttt{identity\_core.py} \\
-AFF\_1: Valence and affect        & AFF & 1.00 & \checkmark & \texttt{valence\_state.py} \\
+GWT-1 & Parallel specialised systems      & Full    & 47 modules \\
+GWT-2 & Limited-capacity workspace        & Full    & \texttt{global\_workspace.py} \\
+GWT-3 & Global broadcast                  & Full    & \texttt{global\_workspace.py} \\
+AE-2  & Embodiment: output--input model   & Full    & \texttt{embodied\_grounding.py} \\
 \midrule
-\textbf{Mean} & & \textbf{0.825} & \textbf{13/14} & \\
+HOT-2 & Metacognitive monitoring          & Partial & \texttt{meta\_cognition.py} \\
+PP-1  & Predictive coding in input        & Partial & \texttt{predictive\_layer.py} \\
+AST-1 & Predictive model of own attention & Partial & \texttt{attention\_schema.py} \\
+AE-1  & Agency under competing goals      & Partial & \texttt{goal\_system.py} \\
+\midrule
+RPT-1 & Algorithmic recurrence in input   & None    & --- \\
+RPT-2 & Integrated perceptual reprs       & None    & --- \\
+GWT-4 & State-dependent attention         & None    & --- \\
+HOT-1 & Generative / noisy perception     & None    & --- \\
+HOT-3 & Belief update from metacognition  & None    & --- \\
+HOT-4 & Sparse, smooth coding             & None    & --- \\
 \bottomrule
 \end{tabular}
-\caption{NeuroKey evaluation against Butlin et al.\ (2023). Results reproducible via
-\texttt{python consciousness\_evaluator.py} in the repository.}
+\caption{NeuroKey against the 14 indicators of Butlin et al.\ (2023):
+4 full, 4 partial, 6 absent. The four ``partial'' entries are modules that load
+but contribute nothing measurable to output (Table~\ref{tab:ablation}).
+Note that IIT is not among Butlin et al.'s sources; they exclude it explicitly.}
 \end{table}
 
-\textbf{Important caveat:} This is a self-evaluation by the same author who implemented
-the modules. Scores reflect that the code runs and passes functional checks,
-not independent third-party validation. Two genuine FAILs exist in earlier versions,
-confirming the evaluator is not trivially hardcoded:
-GWT\_3 remains the one known gap (attention ignition threshold not fully implemented).
-We invite and provide full tooling for independent evaluation.
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrl}
+\toprule
+\textbf{Module disabled} & \textbf{Characters lost} & \textbf{Section lost} \\
+\midrule
+\texttt{permanent\_memory}        & 8\,834 & conversation history \\
+\texttt{vector\_memory}           & 2\,153 & semantic recall \\
+\texttt{autobiographical\_memory} & 1\,991 & life narrative \\
+\texttt{language\_of\_thought}    & 1\,296 & inner speech \\
+\texttt{episodic\_memory}         & 1\,224 & long-term memory \\
+\texttt{goal\_system}             & 1\,151 & goals \\
+\midrule
+\multicolumn{3}{l}{\textbf{26 of 47 modules contribute; 21 contribute nothing; 0 crash.}} \\
+\multicolumn{3}{l}{Null set includes \texttt{global\_workspace}, \texttt{active\_inference},} \\
+\multicolumn{3}{l}{\texttt{valence\_state}, \texttt{meta\_cognition}, \texttt{predictive\_layer}.} \\
+\bottomrule
+\end{tabular}
+\caption{Ablation study. Each module disabled in turn; change in assembled context
+measured across six diverse prompts, each condition in a separate process.}
+\label{tab:ablation}
+\end{table}
 
-\textbf{Evaluation history:}
-\begin{itemize}
-  \item v1 (initial): 0.636\,/\,1.0 — 9/14 passing (evaluator binding gaps)
-  \item v2 (May 9, 2026): 0.807\,/\,1.0 — 12/14 passing (bindings fixed)
-  \item v3 (May 17, 2026): 0.825\,/\,1.0 — 13/14 passing (RPT\_2 recall bug fixed)
-\end{itemize}
+\textbf{Retraction of the previously reported score.} Earlier versions of this paper reported
+a mean of 0.825/1.0 (13/14 passing) from \texttt{consciousness\_evaluator.py}. We withdraw
+that figure. The evaluator returns 0.825 on a 28-module subset and 0.821 on the full
+290-module system --- a 46-module difference it does not detect --- because 10 of its 14
+checks are existence assertions of the form
+\texttt{if hasattr(gw,\,"compete"): score = 0.7}. A check that cannot fail conveys no
+information, and most checks additionally award a floor of 0.3--0.5 for merely not raising an
+exception. We retain the script as a smoke test.
+
+\textbf{Self-evaluation caveat.} The ablation and sensitivity studies remain self-administered,
+but unlike the score they can fail and did: 21 modules returned null contributions and 20 of
+29 context sections proved constant. Independent replication is invited; the harness is a
+single file.
 
 \section{Comparison with Related Systems}
 
@@ -192,12 +228,25 @@ the specific test performed.
 
 \section{Conclusion}
 
-NeuroKey demonstrates that a single developer can implement and deploy a system
-satisfying 13 of 14 Butlin et al.\ (2023) functional consciousness indicators
-within a real-time voice assistant (mean score 0.825\,/\,1.0).
-The one remaining gap (GWT\_3, attention ignition) is acknowledged and documented.
-We release all code open source and invite the research community
-to independently evaluate, critique, and build upon this work.
+A single developer can build and deploy a system organised around the Butlin et al.\ (2023)
+indicators, and can keep it running daily for eighteen months. What that developer cannot do
+by inspection alone is tell which of its parts are working. We built 47 consciousness modules
+and could not, before measuring, have said which of them mattered; the answer turned out to be
+26, with 21 contributing nothing detectable to the system's output, and with 73\,\% of the
+context presented to the language model invariant across inputs as different as grief and good
+news.
+
+We think this is the more useful contribution. A consciousness score that rises when modules
+are deleted --- as ours does for \texttt{phenomenal\_binding} and \texttt{goal\_system} --- is
+not a measurement. An ablation that names its own dead modules is. The concrete next steps
+follow directly from it: implement GWT-4 so that attention selects modules by state rather
+than concatenating all of them, replace the placeholder prediction-error counter with genuine
+predictive coding (PP-1), and close the loop from metacognitive monitoring to action selection
+(HOT-3).
+
+All code is released open source. We invite the research community to replicate these
+measurements, and in particular to apply the same ablation to systems making comparable
+claims.
 
 \begin{thebibliography}{9}
 
